@@ -1,215 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 18th Birthday, Jannatul!</title>
-  <style>
-    :root {
-      --bg-color: #ffdce5;
-      --card-bg: #ffc2d4;
-      --card-inner: #ffeef2;
-      --border-color: #e65c85;
-      --text-color: #6a1b37;
-      --btn-bg: #ffffff;
-      --btn-text: #e65c85;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    /* Textured Pixel Grid Background */
-    body {
-      background-color: var(--bg-color);
-      background-image: 
-        radial-gradient(#ffb3c6 15%, transparent 16%),
-        radial-gradient(#ffb3c6 15%, transparent 16%);
-      background-size: 20px 20px;
-      background-position: 0 0, 10px 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Floating Heart Particles */
-    .particle {
-      position: absolute;
-      font-size: 14px;
-      opacity: 0.6;
-      animation: floatUp 4s infinite linear;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Window Container */
-    .window {
-      width: 350px;
-      background-color: var(--card-bg);
-      border: 4px solid var(--border-color);
-      border-radius: 16px;
-      box-shadow: 0 8px 0px rgba(230, 92, 133, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.5);
-      overflow: hidden;
-      text-align: center;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* Titlebar */
-    .titlebar {
-      background-color: var(--border-color);
-      color: white;
-      padding: 8px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
-    .window-controls span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background-color: white;
-      border-radius: 2px;
-      margin-left: 4px;
-    }
-
-    /* Inner Card Content */
-    .content {
-      padding: 24px 20px;
-      margin: 10px;
-      background-color: var(--card-inner);
-      border: 2px dashed var(--border-color);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      min-height: 250px;
-      justify-content: center;
-    }
-
-    h1 {
-      color: var(--text-color);
-      font-size: 17px;
-      line-height: 1.4;
-      font-weight: bold;
-    }
-
-    /* Cat Animation */
-    .cat-container {
-      font-size: 48px;
-      user-select: none;
-      animation: bounce 0.8s infinite alternate ease-in-out;
-      margin: 5px 0;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0) scale(1); }
-      to { transform: translateY(-10px) scale(1.05); }
-    }
-
-    /* Button Container */
-    .buttons {
-      display: flex;
-      gap: 20px;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      height: 50px;
-    }
-
-    .btn {
-      padding: 8px 24px;
-      border: 3px solid var(--border-color);
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 0px var(--border-color);
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-
-    .btn:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0px var(--border-color);
-    }
-
-    /* Dodging NO Button */
-    #btn-no {
-      position: absolute;
-      transition: top 0.15s ease, left 0.15s ease;
-      z-index: 20;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Background Particles -->
-  <div class="particle" style="left: 10%; animation-duration: 5s;">🌸</div>
-  <div class="particle" style="left: 25%; animation-duration: 7s;">✨</div>
-  <div class="particle" style="left: 60%; animation-duration: 6s;">🐱</div>
-  <div class="particle" style="left: 85%; animation-duration: 4s;">🌸</div>
-
-  <!-- Main Window -->
-  <div class="window">
-    <div class="titlebar">
-      <span>BIRTHDAY / WISHES</span>
-      <div class="window-controls">
-        <span></span><span></span>
-      </div>
-    </div>
-    
-    <div class="content">
-      <h1 id="title">Happy 18th Birthday, Jannatul! Do you love cats more than anything? 🐱</h1>
-      
-      <div class="cat-container" id="cat-icon">🐱✨</div>
-
-      <div class="buttons" id="btn-group">
-        <button class="btn" id="btn-yes">YES</button>
-        <button class="btn" id="btn-no">NO</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<script>
     const btnNo = document.getElementById('btn-no');
     const btnYes = document.getElementById('btn-yes');
     const title = document.getElementById('title');
     const catIcon = document.getElementById('cat-icon');
     const btnGroup = document.getElementById('btn-group');
 
-    // Runaway / Dodge Functionality for NO Button
+    // Runaway / Dodge Functionality - Stays inside bounds
     function dodge() {
       const containerRect = btnGroup.getBoundingClientRect();
-      
-      // Calculate boundaries within the button area
-      const maxX = containerRect.width - btnNo.offsetWidth;
-      const maxY = 120; // Allow vertical freedom around the card bottom
+      const btnRect = btnNo.getBoundingClientRect();
 
-      const randomX = Math.floor(Math.random() * (maxX * 2)) - maxX;
-      const randomY = Math.floor(Math.random() * maxY) - (maxY / 2);
+      // Calculate maximum allowed movement inside the container width/height
+      const maxX = (containerRect.width / 2) - (btnRect.width / 2);
+      const maxY = 40; // Max distance up or down
 
-      btnNo.style.left = `${randomX}px`;
-      btnNo.style.top = `${randomY}px`;
+      // Generate random X and Y within safety bounds
+      const randomX = (Math.random() * (maxX * 2)) - maxX;
+      const randomY = (Math.random() * (maxY * 2)) - maxY;
+
+      btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 
+    // Trigger dodge on both desktop hover and mobile touch
     btnNo.addEventListener('mouseenter', dodge);
     btnNo.addEventListener('touchstart', (e) => {
       e.preventDefault();
@@ -223,5 +35,3 @@
       btnGroup.style.display = 'none';
     });
   </script>
-</body>
-</html>
