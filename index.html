@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 18th Birthday, Jannatul!</title>
+  <style>
+    :root {
+      --bg: #ffeef2;
+      --card: #ff779d;
+      --card-border: #d53b6d;
+      --text-dark: #4a1525;
+      --btn-bg: #ffffff;
+      --btn-text: #d53b6d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background-color: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Window Container */
+    .window {
+      width: 340px;
+      background-color: #ffd6e0;
+      border: 3px solid var(--card-border);
+      border-radius: 12px;
+      box-shadow: 0 8px 0px var(--card-border);
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Window Titlebar */
+    .titlebar {
+      background-color: var(--card-border);
+      color: white;
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .window-controls span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      margin-left: 4px;
+    }
+
+    /* Inner Content */
+    .content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    h1 {
+      color: var(--text-dark);
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    /* Cat Animation Pixel Art */
+    .cat-container {
+      font-size: 50px;
+      user-select: none;
+      animation: bounce 1s infinite alternate ease-in-out;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
+    /* Buttons Layout */
+    .buttons {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      min-height: 45px;
+      margin-top: 5px;
+    }
+
+    .btn {
+      padding: 8px 22px;
+      border: 2px solid var(--card-border);
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 0px var(--card-border);
+      transition: transform 0.1s;
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0px var(--card-border);
+    }
+
+    #btn-no {
+      position: absolute;
+      transition: top 0.15s ease, left 0.15s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="window">
+    <div class="titlebar">
+      <span>BIRTHDAY / WISHES</span>
+      <div class="window-controls">
+        <span></span><span></span>
+      </div>
+    </div>
+    
+    <div class="content">
+      <h1 id="title">Happy 18th Birthday, Jannatul! Do you love cats more than anything? 🐱</h1>
+      
+      <div class="cat-container" id="cat-icon">🐱✨</div>
+
+      <div class="buttons" id="btn-group">
+        <button class="btn" id="btn-yes">YES</button>
+        <button class="btn" id="btn-no">NO</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btnNo = document.getElementById('btn-no');
+    const btnYes = document.getElementById('btn-yes');
+    const title = document.getElementById('title');
+    const catIcon = document.getElementById('cat-icon');
+
+    // Make NO button run away on hover/touch
+    function dodge() {
+      const windowWidth = 240;
+      const windowHeight = 220;
+      
+      const newX = Math.floor(Math.random() * (windowWidth - 80)) - 80;
+      const newY = Math.floor(Math.random() * (windowHeight - 40)) - 40;
+
+      btnNo.style.left = `${newX}px`;
+      btnNo.style.top = `${newY}px`;
+    }
+
+    btnNo.addEventListener('mouseenter', dodge);
+    btnNo.addEventListener('touchstart', dodge);
+
+    // YES button click action
+    btnYes.addEventListener('click', () => {
+      title.innerHTML = "Yay! Happy Official 18th Birthday, Jannatul! 🎉🎂<br><br>Hope this year brings you tons of success, happiness, and infinite cat treats! Best wishes, my awesome friend!";
+      catIcon.innerHTML = "😸🎉🎁";
+      btnNo.style.display = 'none';
+      btnYes.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
